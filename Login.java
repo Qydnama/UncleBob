@@ -12,10 +12,8 @@ public class Login {
 
     public boolean login() {
         try {
-            // Connect to the database
             Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "raimbek99");
 
-            // Check if the user's credentials are valid
             Statement statement = connection.createStatement();
             ResultSet result = statement.executeQuery("SELECT * FROM users WHERE username = '" + username + "' AND password = '" + password + "'");
             if (result.next()) {
@@ -39,10 +37,8 @@ public class Login {
         String newPassword = scanner.nextLine();
 
         try {
-            // Connect to the database
             Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "raimbek99");
 
-            // Insert the new user's credentials into the database
             Statement statement = connection.createStatement();
             statement.executeUpdate("INSERT INTO users (username, password) VALUES ('" + newUsername + "', '" + newPassword + "')");
         } catch (SQLException e) {
